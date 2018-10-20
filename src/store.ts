@@ -14,32 +14,31 @@ class Store {
     @observable showBio = false;
     @observable swipe = null;
     iterator = 0;
+    next = 200;
 
     requestData() {
 
         if (!this.streams || this.iterator >= this.streams.length) {
-            data.getStreams().then((result) => {
+            data.getNextStreams(this.next).then((result) => {
                 this.streams = result.streams;
                 this.iterator = 0;
-
-                const stream = this.nextStream();
-                this.api.name = stream.channel.display_name;
-                this.api.game = stream.channel.game;
-                this.api.bio = stream.channel.status;
-                this.api.pic = stream.preview.medium;
+                this.updateStream(this.nextStream());
+                this.next += this.streams.length;
             });
-        }
-        else {
-            const stream = this.nextStream();
-            this.api.name = stream.channel.display_name;
-            this.api.game = stream.channel.game;
-            this.api.bio = stream.channel.status;
-            this.api.pic = stream.preview.medium;
+        } else {
+            this.updateStream(this.nextStream());
         }
     }
 
     nextStream() {
         return this.streams[this.iterator++];
+    }
+
+    updateStream(stream) {
+        this.api.name = stream.channel.display_name;
+        this.api.game = stream.channel.game;
+        this.api.bio = stream.channel.status;
+        this.api.pic = stream.preview.medium;
     }
 }
 

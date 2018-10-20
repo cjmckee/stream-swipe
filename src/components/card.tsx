@@ -61,7 +61,7 @@ export class TinderCard extends React.Component {
 
     let prevSwipe = <div></div>;
     if (store.swipe === "right") {
-        prevSwipe = <div><h3>You swiped <span style={{color: "green"}}>right</span>.</h3></div>;
+        prevSwipe = <div><h3>You followed <span style={{color: "green"}}>{store.api.name}</span>.</h3></div>;
     }
     if (store.swipe === "left") {
         prevSwipe = <div><h3>You swiped <span style={{color: "red"}}>left</span>.</h3></div>;
