@@ -1,0 +1,22 @@
+{
+    "data": [
+        {
+            "name": "Nael",
+            "game": "League of Legends",
+            "bio": "Nael is a cute GT boy who is interested in memes and raw SQL",
+            "pic": "assets/neel.jpg"
+        },
+        {
+            "name": "Chirs",
+            "game": "Rocket League",
+            "bio": "Chirs is a cute UCF boy who has only gotten champ in Rocket League in Hoops",
+            "pic": "assets/chris.jpg"
+        },
+        {
+            "name": "Ydoc",
+            "game": "Slap City",
+            "bio": "Ydoc is a Clemson boy who only plays Jenny in Slap City to make Nael mad",
+            "pic": "assets/cody.jpg"
+        }
+    ]
+}

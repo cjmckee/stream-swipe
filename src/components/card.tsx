@@ -3,6 +3,13 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import { Typography, CardActionArea } from "../../node_modules/@material-ui/core";
 import CardMedia from "@material-ui/core/CardMedia";
+import Button from "@material-ui/core/Button";
+import Icon from "@material-ui/core/Icon";
+import CancelIcon from "@material-ui/icons/Cancel";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import Slide from "@material-ui/core/Slide";
+import Fade from "@material-ui/core/Fade";
+
 import { store } from "../store";
 import { observer } from "mobx-react";
 
@@ -20,15 +27,27 @@ const media = {
 const game = {
     color: "purple"
 };
+const buttonStyle = {
+    margin: "40px 10% 40px 10%"
+};
 
 @observer
 export class TinderCard extends React.Component {
 
   componentDidMount() {
-    store.name = "Nael";
-    store.game = "League of Legends";
-    store.bio = "Nael is a cute GT boy who is interested in memes and raw SQL";
-    store.showBio = false;
+    store.requestData();
+  }
+
+  swipeRight() {
+      console.log("you swiped right");
+      store.swipe = "right";
+      store.requestData();
+  }
+
+  swipeLeft() {
+      console.log("you have swiped left");
+      store.swipe = "left";
+      store.requestData();
   }
 
   render() {
@@ -36,9 +55,17 @@ export class TinderCard extends React.Component {
     const bio = store.showBio ? 
     <CardContent>
         <Typography>
-            {store.bio}
+            {store.api.bio}
         </Typography>
     </CardContent> : <div></div>;
+
+    let prevSwipe = <div></div>;
+    if (store.swipe === "right") {
+        prevSwipe = <div><h3>You swiped <span style={{color: "green"}}>right</span>.</h3></div>;
+    }
+    if (store.swipe === "left") {
+        prevSwipe = <div><h3>You swiped <span style={{color: "red"}}>left</span>.</h3></div>;
+    }
 
     return (
     /*
@@ -47,32 +74,41 @@ export class TinderCard extends React.Component {
     */
     <div onKeyDown={(event) => {
         if (event.key === "ArrowRight") {
-            console.log("You swiped right");
+            this.swipeRight();
         }
         if (event.key === "ArrowLeft") {
-            console.log("You swiped left");
+            this.swipeLeft();
         }
     }}>
-      <div style={box}>
-      <Card style={card}>
-      <CardActionArea onClick={() => {store.showBio = !store.showBio; }}>
-        <CardMedia
-          style={media}
-          image="assets/neel.jpg"
-          title="Neel"
-        />
-        <CardContent>
-            <Typography variant="h2">
-                {store.name}
-            </Typography>
-            <Typography>
-                Playing <span style={game}>{store.game}</span>
-            </Typography>
-        </CardContent>
-        {bio}
-      </CardActionArea>
-      </Card>
-      </div>
+        <div style={box}>
+            <Card style={card}>
+                <CardActionArea onClick={() => {store.showBio = !store.showBio; }}>
+                    <CardMedia
+                    style={media}
+                    image={store.api.pic}
+                    title={store.api.name}
+                    />
+                    <CardContent>
+                        <Typography variant="h2">
+                            {store.api.name}
+                        </Typography>
+                        <Typography>
+                            Playing <span style={game}>{store.api.game}</span>
+                        </Typography>
+                    </CardContent>
+                    {bio}
+                </CardActionArea>
+            </Card>
+        </div>
+        <div style={box}>
+            <Button variant="fab" style={buttonStyle} aria-label="dislike" color="secondary">
+                <CancelIcon onClick={this.swipeLeft}/>
+            </Button>
+            <Button variant="fab" style={buttonStyle} aria-label="like" color="primary">
+                <FavoriteIcon onClick={this.swipeRight} />
+            </Button>
+        { prevSwipe }
+        </div>
       </div>
     );
   }
