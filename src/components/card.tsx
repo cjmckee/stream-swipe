@@ -14,8 +14,10 @@ import { store } from "../store";
 import { observer } from "mobx-react";
 
 const card = {
-        width: "40%",
-        margin: "auto"
+        minWidth: "645",
+        minHeight: "365",
+        margin: "auto",
+        display: "inline-block"
     };
 const box = {
         textAlign: "center" as "center",
@@ -83,11 +85,16 @@ export class TinderCard extends React.Component {
         <div style={box}>
             <Card style={card}>
                 <CardActionArea onClick={() => {store.showBio = !store.showBio; }}>
-                    <CardMedia
-                    style={media}
-                    image={store.api.pic}
-                    title={store.api.name}
-                    />
+                    <CardContent>
+                    <iframe
+                        src={"https://player.twitch.tv/?channel=" + store.api.channel + "&muted=true"}
+                        height="360"
+                        width="640"
+                        frameBorder="0"
+                        scrolling="no"
+                        allowFullScreen={true}>
+                    </iframe>
+                    </CardContent>
                     <CardContent>
                         <Typography variant="h2">
                             {store.api.name}

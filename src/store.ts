@@ -8,7 +8,8 @@ class Store {
         name: null,
         game: null,
         bio: null,
-        pic: null
+        pic: null,
+        channel: null
     };
     @observable streams = null;
     @observable showBio = false;
@@ -27,6 +28,7 @@ class Store {
                 this.api.game = stream.channel.game;
                 this.api.bio = stream.channel.status;
                 this.api.pic = stream.preview.medium;
+                this.api.channel = stream.channel.name;
             });
         }
         else {
@@ -35,7 +37,10 @@ class Store {
             this.api.game = stream.channel.game;
             this.api.bio = stream.channel.status;
             this.api.pic = stream.preview.medium;
+            this.api.channel = stream.channel.name;
         }
+
+        this.showBio = false;
     }
 
     nextStream() {
