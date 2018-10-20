@@ -1,0 +1,31 @@
+{
+  "name": "tinder-invest",
+  "version": "1.0.0",
+  "description": "tinder investment",
+  "main": "index.js",
+  "dependencies": {
+    "@types/react": "^16.4.18",
+    "@types/react-dom": "^16.0.9",
+    "@types/reactstrap": "^6.0.2",
+    "bootstrap": "^4.1.3",
+    "css-loader": "^1.0.0",
+    "jquery": "^3.3.1",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "reactstrap": "^6.3.1",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.16.5",
+    "webpack-cli": "^3.1.0"
+  },
+  "devDependencies": {
+    "awesome-typescript-loader": "^5.2.0",
+    "source-map-loader": "^0.2.3",
+    "tslint": "^5.11.0",
+    "typescript": "^3.0.1"
+  },
+  "scripts": {
+    "build": "webpack && tslint -p tsconfig.json"
+  },
+  "author": "",
+  "license": "ISC"
+}
