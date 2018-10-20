@@ -14,12 +14,16 @@ import { store } from "../store";
 import { observer } from "mobx-react";
 
 const card = {
-        width: "40%",
-        margin: "auto"
-    };
+    width: "80%",
+    backgroundColor:"#ff0000",
+    margin: "auto"
+};
 const box = {
-        textAlign: "center" as "center",
-    };
+    top:"10%",
+    bottom:"10%",
+    backgroundColor:"#00ff00",
+    textAlign: "center" as "center",
+};
 const media = {
     width: "100%",
     minHeight: "250px"
