@@ -14,15 +14,16 @@ import { store } from "../store";
 import { observer } from "mobx-react";
 
 const card = {
-    width: "80%",
-    backgroundColor:"#ff0000",
-    margin: "auto"
-};
+        minWidth: "645",
+        minHeight: "365",
+        margin: "auto",
+        display: "inline-block"
+    };
+
 const box = {
-    top:"10%",
-    bottom:"10%",
-    backgroundColor:"#00ff00",
-    textAlign: "center" as "center",
+    marginTop: "2.0%",
+    marginBottom:"2.5%",
+    textAlign: "center" as "center"
 };
 const media = {
     width: "100%",
@@ -32,7 +33,7 @@ const game = {
     color: "purple"
 };
 const buttonStyle = {
-    margin: "40px 10% 40px 10%"
+    margin: "10px 10% 10px 10%"
 };
 
 @observer
@@ -44,12 +45,12 @@ export class TinderCard extends React.Component {
 
   swipeRight() {
       console.log("you swiped right");
-      store.swipe = "right";
+      store.swipe = store.api.name;
       store.requestData();
   }
 
   swipeLeft() {
-      console.log("you have swiped left");
+      console.log("you swiped left");
       store.swipe = "left";
       store.requestData();
   }
@@ -64,12 +65,13 @@ export class TinderCard extends React.Component {
     </CardContent> : <div></div>;
 
     let prevSwipe = <div></div>;
-    if (store.swipe === "right") {
-        prevSwipe = <div><h3>You swiped <span style={{color: "green"}}>right</span>.</h3></div>;
-    }
     if (store.swipe === "left") {
         prevSwipe = <div><h3>You swiped <span style={{color: "red"}}>left</span>.</h3></div>;
     }
+    else if (store.swipe) {
+        prevSwipe = <div><h3>You followed <span style={{color: "green"}}>{store.swipe}</span>.</h3></div>;
+    }
+    
 
     return (
     /*
@@ -87,17 +89,25 @@ export class TinderCard extends React.Component {
         <div style={box}>
             <Card style={card}>
                 <CardActionArea onClick={() => {store.showBio = !store.showBio; }}>
-                    <CardMedia
-                    style={media}
-                    image={store.api.pic}
-                    title={store.api.name}
-                    />
+                    <CardContent>
+                    <iframe
+                        src={"https://player.twitch.tv/?channel=" + store.api.channel + "&muted=true"}
+                        height="360"
+                        width="640"
+                        frameBorder="0"
+                        scrolling="no"
+                        allowFullScreen={true}>
+                    </iframe>
+                    </CardContent>
                     <CardContent>
                         <Typography variant="h2">
                             {store.api.name}
                         </Typography>
                         <Typography>
                             Playing <span style={game}>{store.api.game}</span>
+                        </Typography>
+                        <Typography>
+                        {store.api.viewers} Viewers
                         </Typography>
                     </CardContent>
                     {bio}
