@@ -10,19 +10,19 @@ class Store {
         bio: null,
         channel: null,
         viewers: null,
-        id: null
+        id: null,
+        picture: null
     };
     @observable streams = null;
     @observable showBio = false;
     @observable swipe = null;
+    @observable likedStreams = [];
     iterator = 0;
 
     requestData() {
-
         if (!this.streams || this.iterator >= this.streams.length) {
             data.getStreams(this.nextBatch()).then((result) => {
                 this.streams = result.streams;
-                console.log(result);
                 this.iterator = 0;
                 this.updateStream(this.nextStream());
             });
@@ -45,6 +45,11 @@ class Store {
         return Math.floor(Math.random() * 25000);
     }
 
+    addLikedStreamAPI(streamAPI) {
+        this.likedStreams.unshift(JSON.parse(JSON.stringify(streamAPI)));
+        console.log(streamAPI.picture);
+    }
+
     updateStream(stream) {
         this.api.name = stream.channel.display_name;
         this.api.game = stream.channel.game;
@@ -52,6 +57,7 @@ class Store {
         this.api.channel = stream.channel.name;
         this.api.viewers = stream.viewers;
         this.api.id = stream.channel._id;
+        this.api.picture = stream.channel.logo;
     }
 }
 

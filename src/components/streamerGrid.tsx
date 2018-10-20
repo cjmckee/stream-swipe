@@ -7,6 +7,8 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
+import { observer } from 'mobx-react';
+import { store } from '../store';
 
 const cody = {
   img: "assets/cody.jpg",
@@ -34,15 +36,16 @@ const gridList = {
 const icon =  {
 };
 
+@observer
 export class StreamerGrid extends React.Component {
     render() {
     return (
       <div style={root}>
         <GridList style={gridList} cols={2}>
-          {tileData.map(tile => (
-            <GridListTile key={tile.img}>
-              <img src={tile.img} alt={tile.title} />
-              <GridListTileBar title={tile.title} />
+          {store.likedStreams.map(tile => (
+            <GridListTile key={tile.picture}>
+              <img src={tile.picture} alt={tile.name} />
+              <GridListTileBar title={tile.name} />
             </GridListTile>
           ))}
         </GridList>
