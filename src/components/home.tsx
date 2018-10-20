@@ -8,6 +8,7 @@ import {
     Row
 } from "simple-flexbox";
 import { TinderCard } from "./card";
+import { StreamerGrid } from "./streamerGrid";
 
 const iconGrid = {
     height:"100%",
@@ -15,7 +16,8 @@ const iconGrid = {
     top:0,
     left:0,
     backgroundColor:"#6441a4",
-    position:"fixed"
+    position:"fixed",
+    padding:4
 };
 
 const cardViewStyle = {
@@ -33,6 +35,7 @@ export class Home extends React.Component {
             <Container>
                 <Row>
                     <Column style={iconGrid}>
+                        <StreamerGrid />
                     </Column>
                     <Column style={cardViewStyle}>
                         <TinderCard />
