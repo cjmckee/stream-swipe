@@ -19,9 +19,12 @@ const card = {
         margin: "auto",
         display: "inline-block"
     };
+
 const box = {
-        textAlign: "center" as "center",
-    };
+    marginTop: "2%",
+    marginBottom:"2%",
+    textAlign: "center" as "center"
+};
 const media = {
     width: "100%",
     minHeight: "250px"
