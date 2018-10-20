@@ -8,20 +8,21 @@ class Store {
         name: null,
         game: null,
         bio: null,
-        pic: null,
-        channel: null
+        channel: null,
+        viewers: null,
     };
     @observable streams = null;
     @observable showBio = false;
     @observable swipe = null;
     iterator = 0;
-    next = 200;
+    next = 1000;
 
     requestData() {
 
         if (!this.streams || this.iterator >= this.streams.length) {
-            data.getNextStreams(this.next).then((result) => {
+            data.getStreams(this.next).then((result) => {
                 this.streams = result.streams;
+                console.log(result);
                 this.iterator = 0;
                 this.updateStream(this.nextStream());
                 this.next += this.streams.length;
@@ -41,8 +42,8 @@ class Store {
         this.api.name = stream.channel.display_name;
         this.api.game = stream.channel.game;
         this.api.bio = stream.channel.status;
-        this.api.pic = stream.preview.medium;
         this.api.channel = stream.channel.name;
+        this.api.viewers = stream.viewers;
     }
 }
 

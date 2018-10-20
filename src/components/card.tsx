@@ -42,7 +42,7 @@ export class TinderCard extends React.Component {
 
   swipeRight() {
       console.log("you swiped right");
-      store.swipe = "right";
+      store.swipe = store.api.name;
       store.requestData();
   }
 
@@ -62,12 +62,13 @@ export class TinderCard extends React.Component {
     </CardContent> : <div></div>;
 
     let prevSwipe = <div></div>;
-    if (store.swipe === "right") {
-        prevSwipe = <div><h3>You followed <span style={{color: "green"}}>{store.api.name}</span>.</h3></div>;
-    }
     if (store.swipe === "left") {
         prevSwipe = <div><h3>You swiped <span style={{color: "red"}}>left</span>.</h3></div>;
     }
+    else if (store.swipe) {
+        prevSwipe = <div><h3>You followed <span style={{color: "green"}}>{store.swipe}</span>.</h3></div>;
+    }
+    
 
     return (
     /*
@@ -101,6 +102,9 @@ export class TinderCard extends React.Component {
                         </Typography>
                         <Typography>
                             Playing <span style={game}>{store.api.game}</span>
+                        </Typography>
+                        <Typography>
+                        {store.api.viewers} Viewers
                         </Typography>
                     </CardContent>
                     {bio}
