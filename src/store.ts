@@ -33,8 +33,8 @@ class Store {
         this.showBio = false;
     }
 
-    followStream(userId) {
-        return data.followStream(userId, this.api.id);
+    followStream() {
+        return data.followStream(this.api.id);
     }
 
     nextStream() {

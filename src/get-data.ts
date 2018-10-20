@@ -25,21 +25,35 @@ class GetData {
         );
     }
 
-    followStream(userId, channelId) {
-        console.log(userId, channelId);
-        return fetch("https://api.twitch.tv/kraken/users/" + userId + "/follows/channels/" + channelId, {
+    followStream(channelId) {
+        this.getUserId().then((userId)=>{
+            return fetch("https://api.twitch.tv/kraken/users/" + userId + "/follows/channels/" + channelId, {
             method: "PUT"
-        })
-        .then(
-            (response) => {
-                if (response.status !== 200) {
-                    console.log("fetch failed to get data");
-                    console.log(response.status);
-                    return;
+            })
+            .then(
+                (response) => {
+                    if (response.status !== 200) {
+                        console.log("fetch failed to get data");
+                        console.log(response.status);
+                        return;
+                    }
+                    return response.json();
                 }
-                return response.json();
+            );
+        });
+        
+    }
+
+    getUserId() {
+        return fetch("https://api.twitch.tv/kraken/user", {
+            method: "GET",
+            headers: {
+                "Client-ID": clientId,
+                "Authorization": "OAuth " + window.localStorage.getItem("access_token"),
             }
-        );
+        }).then((result)=> {
+            return result;
+        })
     }
 }
 
