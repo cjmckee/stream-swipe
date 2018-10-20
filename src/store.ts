@@ -15,17 +15,15 @@ class Store {
     @observable showBio = false;
     @observable swipe = null;
     iterator = 0;
-    next = 1000;
 
     requestData() {
 
         if (!this.streams || this.iterator >= this.streams.length) {
-            data.getStreams(this.next).then((result) => {
+            data.getStreams(this.nextBatch()).then((result) => {
                 this.streams = result.streams;
                 console.log(result);
                 this.iterator = 0;
                 this.updateStream(this.nextStream());
-                this.next += this.streams.length;
             });
         } else {
             this.updateStream(this.nextStream());
@@ -36,6 +34,10 @@ class Store {
 
     nextStream() {
         return this.streams[this.iterator++];
+    }
+
+    nextBatch() {
+        return Math.floor(Math.random() * 25000);
     }
 
     updateStream(stream) {
