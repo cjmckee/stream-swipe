@@ -28,7 +28,7 @@ class GetData {
     followStream(userId, channelId) {
         console.log(userId, channelId);
         return fetch("https://api.twitch.tv/kraken/users/" + userId + "/follows/channels/" + channelId, {
-            method: "put"
+            method: "PUT"
         })
         .then(
             (response) => {
