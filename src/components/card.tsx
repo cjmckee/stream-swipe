@@ -45,7 +45,7 @@ export class TinderCard extends React.Component {
   }
 
   swipeLeft() {
-      console.log("you have swiped left");
+      console.log("you swiped left");
       store.swipe = "left";
       store.requestData();
   }

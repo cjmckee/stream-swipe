@@ -3,8 +3,15 @@ const fakeData = require("../fake-data/fake-data.json");
 
 class GetData {
 
-    /*getData() {
-        fetch("fake-data/fake-data.json")
+    getData() {
+        const pick = Math.floor(Math.random() * 3);
+        return fakeData.data[pick];
+    }
+
+    clientId = "n64yujbrc3geoobvcwnr427qqcuzq8";
+
+    getStreams() {
+        return fetch("https://api.twitch.tv/kraken/streams/?client_id=" + this.clientId)
         .then(
             (response) => {
                 if (response.status !== 200) {
@@ -13,16 +20,9 @@ class GetData {
                     return;
                 }
 
-                response.json().then(
-                    (data) => console.log(data)
-                );
+                return response.json();
             }
         );
-    }*/
-
-    getData() {
-        const pick = Math.floor(Math.random() * 3);
-        return fakeData.data[pick];
     }
 }
 
