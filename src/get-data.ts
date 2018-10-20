@@ -27,7 +27,8 @@ class GetData {
 
     followStream(channelId) {
         this.getUserId().then((userId)=>{
-            return fetch("https://api.twitch.tv/kraken/users/" + userId + "/follows/channels/" + channelId, {
+            console.log(userId);
+            return fetch("https://api.twitch.tv/kraken/users/" + userId._id + "/follows/channels/" + channelId, {
             method: "PUT"
             })
             .then(
@@ -52,8 +53,9 @@ class GetData {
                 "Authorization": "OAuth " + window.localStorage.getItem("access_token"),
             }
         }).then((result)=> {
-            return result;
-        })
+            console.log(result);
+            return result.json();
+        });
     }
 }
 
