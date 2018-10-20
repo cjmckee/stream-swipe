@@ -10,6 +10,7 @@ class Store {
         bio: null,
         channel: null,
         viewers: null,
+        id: null
     };
     @observable streams = null;
     @observable showBio = false;
@@ -32,6 +33,10 @@ class Store {
         this.showBio = false;
     }
 
+    followStream(userId) {
+        return data.followStream(userId, this.api.id);
+    }
+
     nextStream() {
         return this.streams[this.iterator++];
     }
@@ -46,6 +51,7 @@ class Store {
         this.api.bio = stream.channel.status;
         this.api.channel = stream.channel.name;
         this.api.viewers = stream.viewers;
+        this.api.id = stream.channel._id;
     }
 }
 

@@ -24,6 +24,22 @@ class GetData {
             }
         );
     }
+
+    followStream(userId, channelId) {
+        return fetch("https://api.twitch.tv/kraken/users/" + userId + "/follows/channels/" + channelId, {
+            method: "put"
+        })
+        .then(
+            (response) => {
+                if (response.status !== 200) {
+                    console.log("fetch failed to get data");
+                    console.log(response.status);
+                    return;
+                }
+                return response.json();
+            }
+        );
+    }
 }
 
 export const data = new GetData();

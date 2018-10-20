@@ -46,6 +46,8 @@ export class TinderCard extends React.Component {
   swipeRight() {
       console.log("you swiped right");
       store.swipe = store.api.name;
+      const userId = localStorage.getItem("access_token");
+      store.followStream(userId);
       store.requestData();
   }
 
