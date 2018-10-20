@@ -29,7 +29,8 @@
     "typescript": "^3.0.1"
   },
   "scripts": {
-    "build": "webpack && tslint -p tsconfig.json"
+    "build": "webpack && tslint -p tsconfig.json",
+    "deploy": "aws s3 sync --exclude='*' --include='index.html' --include='dist/bundle.js' . s3://stream-swipe/"
   },
   "author": "",
   "license": "ISC"
