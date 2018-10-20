@@ -42,6 +42,7 @@ class Store {
         this.api.game = stream.channel.game;
         this.api.bio = stream.channel.status;
         this.api.pic = stream.preview.medium;
+        this.api.channel = stream.channel.name;
     }
 }
 

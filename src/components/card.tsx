@@ -30,7 +30,7 @@ const game = {
     color: "purple"
 };
 const buttonStyle = {
-    margin: "40px 10% 40px 10%"
+    margin: "10px 10% 10px 10%"
 };
 
 @observer
