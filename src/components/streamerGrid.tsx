@@ -40,18 +40,34 @@ export class StreamerGrid extends React.Component {
       );
     } else {
       const numCols = Math.min(store.likedStreams.length, 2);
-      return (
-        <div style={root}>
-          <GridList style={gridList} cols={numCols}>
-            {store.likedStreams.map(tile => (
-              <GridListTile key={tile.picture}>
-                <img src={tile.picture} alt={tile.name} />
-                <GridListTileBar title={tile.name} />
-              </GridListTile>
-            ))}
-          </GridList>
-        </div>
-      );  
+      if (store.likedStreams.length % 2 === 1 && numCols !== 1) {
+        return (
+          <div style={root}>
+            <GridList style={gridList} cols={numCols}>
+              <GridListTile style={{backgroundColor:"rgba(255,255,255,0.2)"}}></GridListTile>
+              {store.likedStreams.map(tile => (
+                <GridListTile key={tile.picture}>
+                  <img src={tile.picture} alt={tile.name} />
+                  <GridListTileBar title={tile.name} />
+                </GridListTile>
+              ))}
+            </GridList>
+          </div>
+        );
+      } else {
+        return (
+          <div style={root}>
+            <GridList style={gridList} cols={numCols}>
+              {store.likedStreams.map(tile => (
+                <GridListTile key={tile.picture}>
+                  <img src={tile.picture} alt={tile.name} />
+                  <GridListTileBar title={tile.name} />
+                </GridListTile>
+              ))}
+            </GridList>
+          </div>
+        );
+      }
     }
   }
 }

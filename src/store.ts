@@ -53,7 +53,6 @@ class Store {
 
     addLikedStreamAPI(streamAPI) {
         this.likedStreams.unshift(JSON.parse(JSON.stringify(streamAPI)));
-        console.log(streamAPI.picture);
     }
 
     updateStream(stream) {
