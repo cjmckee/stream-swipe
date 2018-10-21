@@ -9,26 +9,17 @@ import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
 import { observer } from 'mobx-react';
 import { store } from '../store';
-
-const cody = {
-  img: "assets/cody.jpg",
-  title: "cory"
-};
-const chris = {
-  img: "assets/chris.jpg",
-  title: "ya boy"
-};
-const neel = {
-  img:"assets/neel.jpg",
-  title: "nel"
-};
-const tileData = [cody, chris, neel, cody, cody, neel, neel, chris, chris, neel, cody];
+import { Typography } from '@material-ui/core';
 
 const root = {
   display: 'flex',
   flexWrap: 'wrap' as 'wrap',
   justifyContent: 'space-around',
   overflow: 'hidden'
+};
+const text = {
+  color:"#FFFFFF",
+  textAlign: "center" as "center"
 };
 
 const gridList = {
@@ -38,18 +29,29 @@ const icon =  {
 
 @observer
 export class StreamerGrid extends React.Component {
-    render() {
-    return (
-      <div style={root}>
-        <GridList style={gridList} cols={2}>
-          {store.likedStreams.map(tile => (
-            <GridListTile key={tile.picture}>
-              <img src={tile.picture} alt={tile.name} />
-              <GridListTileBar title={tile.name} />
-            </GridListTile>
-          ))}
-        </GridList>
-      </div>
-    );  
+  render() {
+    if (store.likedStreams.length <= 0) {
+      return (
+        <div style={root}>
+          <Typography style={text}>
+            No liked streamers this session.
+          </Typography>
+         </div>
+      );
+    } else {
+      const numCols = Math.min(store.likedStreams.length, 2);
+      return (
+        <div style={root}>
+          <GridList style={gridList} cols={numCols}>
+            {store.likedStreams.map(tile => (
+              <GridListTile key={tile.picture}>
+                <img src={tile.picture} alt={tile.name} />
+                <GridListTileBar title={tile.name} />
+              </GridListTile>
+            ))}
+          </GridList>
+        </div>
+      );  
+    }
   }
 }

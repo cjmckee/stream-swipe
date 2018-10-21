@@ -44,7 +44,8 @@ export class TinderCard extends React.Component {
   }
 
   swipeRight() {
-      console.log("you swiped right");
+    console.log("you swiped right");
+    if (!store.downloadingStreams) {
       store.swipe = store.api.name;
 
       store.followStream();
@@ -52,6 +53,7 @@ export class TinderCard extends React.Component {
       // THIS IS THE SPAGHETTI WAY OF DOING IT!!! AHHHHHHH
       store.addLikedStreamAPI(store.api);
       store.requestData();
+    }
   }
 
   swipeLeft() {

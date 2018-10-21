@@ -53,8 +53,12 @@ class GetData {
                 "Authorization": "OAuth " + window.localStorage.getItem("access_token"),
             }
         }).then((result)=> {
+<<<<<<< HEAD
             console.log(result);
             return result.json();
+=======
+            return result;
+>>>>>>> Change gridbox to not look weird if there's 1 streamer only; attempt to fix keyshold
         });
     }
 }

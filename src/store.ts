@@ -13,6 +13,7 @@ class Store {
         id: null,
         picture: null
     };
+    downloadingStreams = false;
     @observable streams = null;
     @observable showBio = false;
     @observable swipe = null;
@@ -20,11 +21,16 @@ class Store {
     iterator = 0;
 
     requestData() {
-        if (!this.streams || this.iterator >= this.streams.length) {
+        // guard statement; don't do NOTHIN if there is no active stream atm.
+        if (this.downloadingStreams) {
+            return;
+        } else if (!this.streams || this.iterator >= this.streams.length) {
+            this.downloadingStreams = true;
             data.getStreams(this.nextBatch()).then((result) => {
                 this.streams = result.streams;
                 this.iterator = 0;
                 this.updateStream(this.nextStream());
+                this.downloadingStreams = false;
             });
         } else {
             this.updateStream(this.nextStream());
