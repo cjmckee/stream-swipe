@@ -5,7 +5,7 @@ const clientId = "n64yujbrc3geoobvcwnr427qqcuzq8";
 
 function buildUrl(offset) {
     return URL + "?client_id=" + clientId +
-        "&limit=5" +
+        "&limit=1" +
         ((offset != null) ? "&offset=" + offset : "");
 }
 
