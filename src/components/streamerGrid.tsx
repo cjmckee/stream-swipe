@@ -47,7 +47,9 @@ export class StreamerGrid extends React.Component {
               <GridListTile style={{backgroundColor:"rgba(255,255,255,0.2)"}}></GridListTile>
               {store.likedStreams.map(tile => (
                 <GridListTile key={tile.picture}>
-                  <img src={tile.picture} alt={tile.name} />
+                  <a href={tile.link} target="_blank">
+                    <img src={tile.picture} alt={tile.name} />
+                  </a>
                   <GridListTileBar title={tile.name} />
                 </GridListTile>
               ))}
@@ -60,7 +62,9 @@ export class StreamerGrid extends React.Component {
             <GridList style={gridList} cols={numCols}>
               {store.likedStreams.map(tile => (
                 <GridListTile key={tile.picture}>
-                  <img src={tile.picture} alt={tile.name} />
+                  <a href={tile.link} target="_blank">
+                    <img src={tile.picture} alt={tile.name} />
+                  </a>
                   <GridListTileBar title={tile.name} />
                 </GridListTile>
               ))}

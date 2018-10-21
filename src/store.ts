@@ -11,7 +11,8 @@ class Store {
         channel: null,
         viewers: null,
         id: null,
-        picture: null
+        picture: null,
+        link: null
     };
     downloadingStreams = false;
     @observable streams = null;
@@ -63,6 +64,8 @@ class Store {
         this.api.viewers = stream.viewers;
         this.api.id = stream.channel._id;
         this.api.picture = stream.channel.logo;
+        // lol
+        this.api.link = "https://www.twitch.tv/" + this.api.channel;
     }
 }
 
