@@ -85,7 +85,8 @@ export class TinderCard extends React.Component {
         I have no idea why, but this keydown function only works once you've clicked onto the card.
         It won't work if you click away from it or before you click on it. Who knows man.
     */
-    <div onKeyDown={(event) => {
+    <div onKeyDownCapture={(event) => {
+        console.log(event);
         if (event.key === "ArrowRight") {
             this.swipeRight();
         }
