@@ -24,7 +24,10 @@ const text = {
 
 const gridList = {
 };
+
 const icon =  {
+  maxWidth:"100%",
+  height:"auto",
 };
 
 @observer
@@ -48,7 +51,7 @@ export class StreamerGrid extends React.Component {
               {store.likedStreams.map(tile => (
                 <GridListTile key={tile.picture}>
                   <a href={tile.link} target="_blank">
-                    <img src={tile.picture} alt={tile.name} />
+                    <img src={tile.picture} alt={tile.name} style={icon} />
                   </a>
                   <GridListTileBar title={tile.name} />
                 </GridListTile>
@@ -63,7 +66,7 @@ export class StreamerGrid extends React.Component {
               {store.likedStreams.map(tile => (
                 <GridListTile key={tile.picture}>
                   <a href={tile.link} target="_blank">
-                    <img src={tile.picture} alt={tile.name} />
+                    <img src={tile.picture} alt={tile.name} style={icon} />
                   </a>
                   <GridListTileBar title={tile.name} />
                 </GridListTile>
