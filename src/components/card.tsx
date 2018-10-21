@@ -43,7 +43,7 @@ export class TinderCard extends React.Component {
     store.requestData();
   }
 
-  swipeRight() {
+  static swipeRight() {
     console.log("you swiped right");
     if (!store.downloadingStreams) {
       store.swipe = store.api.name;
@@ -56,7 +56,7 @@ export class TinderCard extends React.Component {
     }
   }
 
-  swipeLeft() {
+  static swipeLeft() {
       console.log("you swiped left");
       store.swipe = "left";
       store.requestData();
@@ -85,14 +85,7 @@ export class TinderCard extends React.Component {
         I have no idea why, but this keydown function only works once you've clicked onto the card.
         It won't work if you click away from it or before you click on it. Who knows man.
     */
-    <div onKeyDown={(event) => {
-        if (event.key === "ArrowRight") {
-            this.swipeRight();
-        }
-        if (event.key === "ArrowLeft") {
-            this.swipeLeft();
-        }
-    }}>
+    <div>
         <div style={box}>
             <Card style={card}>
                 <CardActionArea onClick={() => {store.showBio = !store.showBio; }}>
@@ -123,10 +116,10 @@ export class TinderCard extends React.Component {
         </div>
         <div style={box}>
             <Button variant="fab" style={buttonStyle} aria-label="dislike" color="secondary">
-                <CancelIcon onClick={this.swipeLeft}/>
+                <CancelIcon onClick={TinderCard.swipeLeft}/>
             </Button>
             <Button variant="fab" style={buttonStyle} aria-label="like" color="primary">
-                <FavoriteIcon onClick={this.swipeRight} />
+                <FavoriteIcon onClick={TinderCard.swipeRight} />
             </Button>
         { prevSwipe }
         </div>

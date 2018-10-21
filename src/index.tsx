@@ -5,6 +5,16 @@ import * as ReactDOM from "react-dom";
 var jwt = require('jsonwebtoken');
 
 import { Home } from "./components/home";
+import { TinderCard } from "./components/card";
+
+document.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowRight") {
+        TinderCard.swipeRight();
+    }
+    if (event.key === "ArrowLeft") {
+        TinderCard.swipeLeft();
+    }
+});
 
 const accessToken = window.localStorage.getItem("access_token");
 const hash = (window.location.hash ?
