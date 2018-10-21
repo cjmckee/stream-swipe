@@ -25,6 +25,9 @@ const box = {
     marginBottom:"2.5%",
     textAlign: "center" as "center"
 };
+const center = {
+    textAlign: "center" as "center"
+};
 const media = {
     width: "100%",
     minHeight: "250px"
@@ -114,12 +117,14 @@ export class TinderCard extends React.Component {
                 </CardActionArea>
             </Card>
         </div>
-        <div style={box}>
-            <Button variant="fab" style={buttonStyle} aria-label="dislike" color="secondary">
-                <CancelIcon onClick={TinderCard.swipeLeft}/>
+        <div style={center}>
+            <Button variant="fab" style={buttonStyle} aria-label="dislike" color="secondary"
+                onClick={TinderCard.swipeLeft}>
+                <CancelIcon />
             </Button>
-            <Button variant="fab" style={buttonStyle} aria-label="like" color="primary">
-                <FavoriteIcon onClick={TinderCard.swipeRight} />
+            <Button variant="fab" style={buttonStyle} aria-label="like" color="primary" 
+                onClick={TinderCard.swipeRight} >
+                <FavoriteIcon />
             </Button>
         { prevSwipe }
         </div>
