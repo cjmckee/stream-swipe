@@ -1,6 +1,8 @@
 # stream-swipe
 Stream Swipe - HackGT
 
+https://stream-swipe.com/
+
 to install node modules:
 - go to directory
 - run 'npm install'
