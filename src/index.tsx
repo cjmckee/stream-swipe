@@ -28,9 +28,9 @@ const hash = (window.location.hash ?
 if (hash.access_token) {
   window.localStorage.setItem("access_token", hash.access_token);
   window.localStorage.setItem("user_id", jwt.decode(hash.id_token).sub);
-  window.location.replace("https://stream-swipe.com/");
+  window.location.replace("http://stream-swipe.com/");
 } else if (!accessToken) {
-  window.location.href = "https://id.twitch.tv/oauth2/authorize?client_id=n64yujbrc3geoobvcwnr427qqcuzq8&redirect_uri=http%3A%2F%2Fstream-swipe.com%&response_type=token+id_token&scope=user_follows_edit+openid";
+  window.location.href = "https://id.twitch.tv/oauth2/authorize?client_id=n64yujbrc3geoobvcwnr427qqcuzq8&redirect_uri=http%3A%2F%2Fstream-swipe.com&response_type=token+id_token&scope=user_follows_edit+openid";
 } else {
   ReactDOM.render(
       <Home />,

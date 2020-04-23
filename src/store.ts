@@ -49,7 +49,7 @@ class Store {
     }
 
     nextBatch() {
-      return 100 + Math.floor(9900 * (Math.random() ** 2));
+      return (100 + Math.floor(9900 * (Math.random() ** 2))) % 900;
     }
 
     addLikedStreamAPI(streamAPI) {
