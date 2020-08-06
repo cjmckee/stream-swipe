@@ -67,7 +67,7 @@ export class TinderCard extends React.Component {
 
   render() {
 
-    const bio = store.showBio ? 
+    const bio = store.showBio ?
     <CardContent>
         <Typography>
             {store.api.bio}
@@ -81,7 +81,7 @@ export class TinderCard extends React.Component {
     else if (store.swipe) {
         prevSwipe = <div><h3>You followed <span style={{color: "green"}}>{store.swipe}</span>.</h3></div>;
     }
-    
+
 
     return (
     /*
@@ -94,7 +94,7 @@ export class TinderCard extends React.Component {
                 <CardActionArea onClick={() => {store.showBio = !store.showBio; }}>
                     <CardContent>
                     <iframe
-                        src={"https://player.twitch.tv/?channel=" + store.api.channel + "&muted=true"}
+                        src={"https://player.twitch.tv/?channel=" + store.api.channel + "&muted=false&parent=stream-swipe.com"}
                         height="360"
                         width="640"
                         frameBorder="0"
@@ -122,7 +122,7 @@ export class TinderCard extends React.Component {
                 onClick={TinderCard.swipeLeft}>
                 <CancelIcon />
             </Button>
-            <Button variant="fab" style={buttonStyle} aria-label="like" color="primary" 
+            <Button variant="fab" style={buttonStyle} aria-label="like" color="primary"
                 onClick={TinderCard.swipeRight} >
                 <FavoriteIcon />
             </Button>
